@@ -1,0 +1,4 @@
+# local backups / scratch
+ko-i18n.prev.js
+*.ko-bak
+*.ko-v2-bak
