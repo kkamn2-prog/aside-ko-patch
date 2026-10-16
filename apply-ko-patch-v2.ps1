@@ -4,21 +4,8 @@ param([switch]$Extra, [switch]$IgnoreRunning)
 $ErrorActionPreference = 'Stop'
 $src = Join-Path $PSScriptRoot 'ko-i18n.js'
 if (-not (Test-Path $src)) { throw "ko-i18n.js not found next to this script" }
-# locate AsideAgentManager automatically: known paths first, then a bounded search
-$candidates = @(
-  (Join-Path $env:LOCALAPPDATA 'Aside\User Data\AsideAgentManager'),
-  (Join-Path $env:APPDATA 'Aside\User Data\AsideAgentManager'),
-  (Join-Path $env:LOCALAPPDATA 'Aside\AsideAgentManager')
-)
-$base = $candidates | Where-Object { Test-Path $_ } | Select-Object -First 1
-if (-not $base) {
-  foreach ($root in @((Join-Path $env:LOCALAPPDATA 'Aside'), (Join-Path $env:APPDATA 'Aside'), (Join-Path $env:ProgramFiles 'Aside'))) {
-    if (-not (Test-Path $root)) { continue }
-    $hit = Get-ChildItem $root -Directory -Recurse -Depth 4 -Filter 'AsideAgentManager' -ErrorAction SilentlyContinue | Select-Object -First 1
-    if ($hit) { $base = $hit.FullName; break }
-  }
-}
-if (-not $base) { throw "AsideAgentManager folder not found. Is Aside installed?" }
+. (Join-Path $PSScriptRoot 'common.ps1')
+$base = Find-AsideBase   # locates AsideAgentManager automatically
 
 if (-not $IgnoreRunning) {
   $run = Get-Process | Where-Object { $_.Name -match '^aside' -or ($_.Path -and $_.Path -like '*\Aside\*') }

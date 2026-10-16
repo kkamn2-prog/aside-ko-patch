@@ -5,6 +5,12 @@ Aside 브라우저의 설정 화면과 사이드바 UI 문구를 한국어로 �
 
 > 비공식 도구입니다. Aside 앱 폴더의 `main.html`, `sidepanel.html`에 스크립트 태그를 추가합니다. 사용은 본인 책임이며, Aside가 업데이트되면 다시 적용해야 합니다.
 
+## 설치 (Windows)
+1. 이 저장소를 받습니다. (`Code → Download ZIP` 후 압축 해제, 또는 `git clone https://github.com/kkamn2-prog/aside-ko-patch.git`)
+2. 아래 사용법대로 `한글패치적용v2.bat`을 실행합니다. 별도 설치할 것은 없습니다. (PowerShell 5.1 이상, Windows 기본 포함)
+
+> 지금까지 Windows의 Aside 1.26.x에서만 만들고 시험했습니다. 다른 버전에서 `main.html`/`sidepanel.html` 구조가 다르면 적용이 건너뛰어질 수 있습니다. 문제가 있으면 Issues에 남겨 주세요.
+
 ## 사용법
 1. **Aside를 완전히 종료**합니다. (켜진 채로는 적용되지 않습니다)
 2. `한글패치적용v2.bat`을 더블클릭합니다.

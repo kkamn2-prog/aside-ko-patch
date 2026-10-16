@@ -1,7 +1,8 @@
 # Aside Korean patch v2 - restore originals. Run from an EXTERNAL terminal with Aside closed.
 param([switch]$IgnoreRunning)
 $ErrorActionPreference = 'Stop'
-$base = Join-Path $env:LOCALAPPDATA 'Aside\User Data\AsideAgentManager'
+. (Join-Path $PSScriptRoot 'common.ps1')
+$base = Find-AsideBase
 if (-not $IgnoreRunning) {
   $run = Get-Process | Where-Object { $_.Name -match '^aside' -or ($_.Path -and $_.Path -like '*\Aside\*') }
   if ($run) { throw "Aside is running. Close it first (or use -IgnoreRunning)." }
